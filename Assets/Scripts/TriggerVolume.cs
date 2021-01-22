@@ -6,7 +6,16 @@ public class TriggerVolume : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TextManager.SetDisplayText((int)triggerType);
+        if (!other.CompareTag("Player")) return;
+        
+        GameManager.Instance.PlayerEnteredTrigger(triggerType);
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        
+        GameManager.Instance.PlayerEnteredTrigger();
     }
 }
 
